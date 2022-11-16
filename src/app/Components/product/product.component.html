@@ -1,0 +1,92 @@
+<div class="row">
+
+
+  <!-- <div class="container-fluid">
+    <h2>Name Of Store : {{ storeInfo.name }}</h2>
+
+    <ul>
+      <li *ngFor="let item of storeInfo.branches">{{ item }}</li>
+    </ul>
+    <div class="text-danger" *ngIf="!Switch">
+      Thanks For Visiting our Store <b>{{ clientName }}</b> you Got a Discount
+      <b>{{ discount }}</b>
+    </div>
+    <img [src]="storeInfo.logo" width="150" *ngIf="Switch" />
+    <button class="btn btn-success" (click)="switchImg()">Switch</button>
+  </div> -->
+
+
+  <!-- Event binding -->
+  <!-- Inter Polation and Property Binding -->
+  <!-- <div class="text-center">
+      <span>Select Category : </span>
+      <select (click)="selected($event)" class="form-control">
+        <option [value]="0">All</option>
+
+        <option *ngFor="let item of CategoryList" [value]="item.ID">{{ item.Name }}</option>
+      </select>
+    </div> -->
+
+      <!-- Event binding -->
+      <!-- Inter Polation and Property Binding -->
+      <!-- <select class="form-control" name="c" id="c1" [(ngModel)]="Checked">
+        <option [value]="0">All</option>
+        <option *ngFor="let item of CategoryList" [value]="item.ID">{{ item.Name }}</option>
+      </select>
+
+      <span >{{Checked}}</span> -->
+
+
+  <div class="row-sm">
+    <table class="table mt-2">
+      <thead class="bg-info text-light">
+        <tr>
+          <th scope="col">NO:</th>
+          <th scope="col">Name</th>
+          <th scope="col">Image</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Count</th>
+          <th scope="col">Details</th>
+          <th scope="col">Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--  trackBy used to specify ireable objects identity,
+              and so enhance performance of ngFor tho the collection,
+              and update the changed object ,without re-build the DOM -->
+        <ng-container *ngFor="let product of ProductbyCategory; let i = index ; trackBy:productTrackby">
+
+          <!-- [hidden]="product.CateogryID != Check" [hidden]="product.Quantity==0" -->
+          <tr [ngStyle]="{'background-color': product.Quantity == 0? 'lightyellow' : ''}" >
+            <td>{{ i + 1 }}</td>
+            <td>{{ product.Name }}</td>
+            <td><img LightBox src="{{ product.Img }}" width="100" /></td>
+            <td>
+              <ng-container [ngSwitch]="product.Quantity" ]>
+                <ng-container *ngSwitchCase="0">Out of stock</ng-container>
+                <ng-container *ngSwitchCase="1">One Item Left</ng-container>
+                <ng-container *ngSwitchCase="2">Two Item Left</ng-container>
+                <ng-container *ngSwitchDefault>{{ product.Quantity }}</ng-container>
+              </ng-container>
+            </td>
+            <td>{{ product.Price }}</td>
+            <!-- Template Variable -->
+            <td><input #itemsCount type="number" class="form-control" style="width: 120px;" [disabled]="product.Quantity==0" min="0" [max]="product.Quantity"></td>
+            <td>
+              <button class="btn btn-primary" [disabled]="product.Quantity == 0" (click)="Details(product.ID)">
+                Details
+              </button>
+            </td>
+            <td>
+            <!-- [(ngModel)]="product.Quantity" -->
+              <button class="btn btn-success" [disabled]="product.Quantity == 0" (click)="DecreaseQ(product,itemsCount.value)">
+                Buy
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="mb-2">
+  <label for="cat">Select Category</label>
+  <!-- two way binding -->
+  <select name="cat" id="cat" class="form-control" [(ngModel)]="selectedCattegory">
+      <option value="0">All</option>
+      <option *ngFor="let cat of CategoryList" [value]="cat.ID">{{cat.Name}}</option>
+  </select>
+
+</div>
+<button class="btn btn-warning" routerLink="/addproduct">Add New Product</button>
+
+<!-- <h1>Test select cateogory: {{selectedCatID}}</h1> -->
+<app-product [categoryID]="selectedCattegory" (productOutput)="orderCartResult($event)"></app-product>
+
+<table class="table">
+  <thead class="bg-info">
+    <tr>
+      <th>NO</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Count</th>
+      <th>Total Price</th>
+      <th>Delete</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cart ; let i =index;">
+      <td>{{i+1}}</td>
+      <td>{{item.Name}}</td>
+      <td>{{item.Price}}</td>
+      <td>{{item.Count}}</td>
+      <td>{{item.Price * item.Count | currency : 'EGP' :'symbol' }}
+      <div> Date : {{dateField | date}}</div>
+      </td>
+      <td>
+        <button class="btn btn-danger"  (click)="delete(item)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <button class="btn btn-primary" (click)="calculate()"> Check Total</button> -->
+ <!-- <span>{{totalPrice}}</span> -->
+
+

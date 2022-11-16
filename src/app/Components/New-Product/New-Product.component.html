@@ -1,0 +1,22 @@
+<p>
+  New-Product works!
+</p>
+
+
+<!-- <form> -->
+  <div class="form-group">
+    <label> Product Id</label>
+    <input class="form-control" #Id/>
+
+    <label> Product Name</label>
+    <input class="form-control" #Name/>
+
+    <label> Product Price</label>
+    <input class="form-control"  #Price/>
+
+    <label> Product Count</label>
+    <input class="form-control" #Count/>
+</div>
+<!-- </form> -->
+<button class="btn btn-success" (click)="addNewProduct(Id.value,Name.value,Price.value,Count.value)" > Add</button>
+

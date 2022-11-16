@@ -1,0 +1,23 @@
+
+
+
+<div  class="card" style="width:18rem;">
+
+  <div LightBox = "white" class="card-body">
+    <img  [src]="_product?.Img" class="card-img-top" alt="...">
+    <h5 class="card-title">Name: {{_product?.Name}} </h5>
+
+    <div class="card-text">
+
+        <h4>Price: {{_product?.Price}}</h4>
+        <h4>Quantity: {{_product?.Quantity}}</h4>
+    </div>
+
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button class="btn btn-warning border-0" type="button" (click)="prevPage()" [disabled]="_currentProductID==_ProductIDsList[0]">Previous</button>
+    <button class="btn btn-primary border-0" (click)="goBack()"> Back </button>
+
+    <button class="btn btn-warning border-0" type="button" (click)="nextPage()" [disabled]="_currentProductID==_ProductIDsList[_ProductIDsList.length-1]">Next</button>
+  </div>
+</div>
